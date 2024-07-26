@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cyber Realm: Rise of the Digital Guardian</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        #game-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        #story {
+            margin-bottom: 20px;
+        }
+        #choices {
+            display: flex;
+            flex-direction: column;
+        }
+        button {
+            margin: 5px 0;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #stats {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h1>The Cyber Realm: Rise of the Digital Guardian</h1>
+        <div id="story"></div>
+        <div id="choices"></div>
+        <div id="stats"></div>
+    </div>
+
+    <script>
+        const player = {
+            name: "",
+            xp: 0,
+            level: 1,
+            title: "Novice",
+            completedQuests: []
+        };
+
+        const chapters = [
+            {
+                title: "The Awakening",
+                story: "In the village of Newbie Harbor, you awaken as a fledgling hero. Master Hackworth approaches you with urgency...",
+                choices: [
+                    { text: "Begin TryHackMe course", quest: "TryHackMe", xp: 500, url: "https://tryhackme.com/path/outline/intro" },
+                    { text: "Set up VirtualBox", quest: "VirtualBox", xp: 300, url: "https://www.virtualbox.org/" }
+                ]
+            },
+            {
+                title: "The Code Whisperer",
+                story: "You enter the enchanted Forest of Syntax and encounter the wise serpent, Pythonia...",
+                choices: [
+                    { text: "Learn Python on Codecademy", quest: "Python", xp: 1000, url: "https://www.codecademy.com/learn/learn-python-3" },
+                    { text: "Take on OverTheWire Bandit challenges", quest: "Bandit", xp: 800, url: "https://overthewire.org/wargames/bandit/" }
+                ]
+            },
+            // Add more chapters here
+        ];
+
+        let currentChapter = 0;
+
+        function startGame() {
+            player.name = prompt("Enter your hero's name:");
+            updateStats();
+            showChapter();
+        }
+
+        function showChapter() {
+            const chapter = chapters[currentChapter];
+            document.getElementById("story").innerHTML = `<h2>${chapter.title}</h2><p>${chapter.story}</p>`;
+            
+            const choicesDiv = document.getElementById("choices");
+            choicesDiv.innerHTML = "";
+            chapter.choices.forEach(choice => {
+                const button = document.createElement("button");
+                button.textContent = choice.text;
+                button.onclick = () => redirectToQuest(choice);
+                choicesDiv.appendChild(button);
+            });
+        }
+
+        function redirectToQuest(choice) {
+            if (!player.completedQuests.includes(choice.quest)) {
+                window.open(choice.url, '_blank');
+                const completeButton = document.createElement("button");
+                completeButton.textContent = `Mark "${choice.quest}" as complete`;
+                completeButton.onclick = () => completeQuest(choice);
+                document.getElementById("choices").appendChild(completeButton);
+            } else {
+                alert("You've already completed this quest!");
+            }
+        }
+
+        function completeQuest(choice) {
+            if (!player.completedQuests.includes(choice.quest)) {
+                player.xp += choice.xp;
+                player.completedQuests.push(choice.quest);
+                alert(`Congratulations! You've completed the "${choice.quest}" quest and gained ${choice.xp} XP!`);
+                updateStats();
+                
+                if (player.completedQuests.length >= chapters[currentChapter].choices.length) {
+                    currentChapter++;
+                    if (currentChapter < chapters.length) {
+                        showChapter();
+                    } else {
+                        alert("Congratulations! You've completed all available chapters.");
+                    }
+                }
+            }
+        }
+
+        function updateStats() {
+            player.level = Math.floor(player.xp / 1000) + 1;
+            if (player.level >= 5) player.title = "Cyber Guardian";
+            else if (player.level >= 3) player.title = "Digital Defender";
+            else if (player.level >= 2) player.title = "Code Apprentice";
+
+            document.getElementById("stats").innerHTML = `
+                Name: ${player.name} | XP: ${player.xp} | Level: ${player.level} | Title: ${player.title}
+            `;
+        }
+
+        startGame();
+    </script>
+</body>
+</html>
