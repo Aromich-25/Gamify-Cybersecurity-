@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Learning Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            transition: background-color 0.5s;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        button {
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #555;
+        }
+        #objective, #mentor-advice, #quiz {
+            background: #e9e9e9;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        #progress-bar {
+            width: 100%;
+            background-color: #ddd;
+            margin-top: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        #progress {
+            width: 0%;
+            height: 30px;
+            background-color: #4CAF50;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            transition: width 0.5s ease-in-out;
+        }
+        #achievements {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .achievement {
+            text-align: center;
+            opacity: 0.3;
+            transition: opacity 0.3s;
+        }
+        .achievement.unlocked {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cybersecurity Learning Game</h1>
+        <div id="path-selection">
+            <h2>Choose Your Path:</h2>
+            <button onclick="selectPath('red')">Red Team</button>
+            <button onclick="selectPath('blue')">Blue Team</button>
+            <button onclick="selectPath('both')">Both</button>
+        </div>
+        <button onclick="openExternalResource()">Learn More (External Site)</button>
+        <div id="objective"></div>
+        <div id="mentor-advice"></div>
+        <div id="quiz"></div>
+        <div id="progress-bar">
+            <div id="progress">0%</div>
+        </div>
+        <button onclick="completeObjective()">Complete Current Objective</button>
+        <button onclick="saveProgress()">Save Progress</button>
+        <button onclick="loadProgress()">Load Progress</button>
+        <div id="achievements">
+            <div class="achievement" id="ach-red">
+                <span>🔴</span><br>Red Master
+            </div>
+            <div class="achievement" id="ach-blue">
+                <span>🔵</span><br>Blue Shield
+            </div>
+            <div class="achievement" id="ach-both">
+                <span>🟣</span><br>Cyber Guru
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentPath = '';
+        let progress = 0;
+        const objectives = {
+            red: [
+                "Learn basic network scanning techniques",
+                "Study common vulnerabilities",
+                "Practice ethical hacking on a test environment"
+            ],
+            blue: [
+                "Understand network security fundamentals",
+                "Learn about intrusion detection systems",
+                "Practice incident response scenarios"
+            ],
+            both: [
+                "Grasp the basics of both offensive and defensive security",
+                "Conduct a simulated attack and defense exercise",
+                "Analyze vulnerabilities from both perspectives"
+            ]
+        };
+
+        const externalResources = {
+            red: 'https://www.hackthebox.com/',
+            blue: 'https://www.cybrary.it/course/blue-team-training/',
+            both: 'https://www.sans.org/cyber-security-courses/'
+        };
+
+        const quizzes = {
+            red: [
+                { q: "What is a common port scanning tool?", a: "nmap" },
+                { q: "What does SQL injection exploit?", a: "database" },
+                { q: "What is the purpose of a reverse shell?", a: "control" }
+            ],
+            blue: [
+                { q: "What does IDS stand for?", a: "Intrusion Detection System" },
+                { q: "What is a firewall designed to protect?", a: "network" },
+                { q: "What type of malware self-replicates?", a: "worm" }
+            ],
+            both: [
+                { q: "What does CIA stand for in security?", a: "Confidentiality Integrity Availability" },
+                { q: "What is the purpose of penetration testing?", a: "Find vulnerabilities" },
+                { q: "What is social engineering?", a: "Manipulating people" }
+            ]
+        };
+
+        function selectPath(path) {
+            currentPath = path;
+            progress = 0;
+            updateProgress();
+            showObjective();
+            provideMentorAdvice();
+            showQuiz();
+            updateTheme();
+        }
+
+        function showObjective() {
+            const objectiveElement = document.getElementById('objective');
+            const currentObjective = objectives[currentPath][progress];
+            objectiveElement.innerHTML = `<h3>Current Objective:</h3><p>${currentObjective}</p>`;
+        }
+
+        function provideMentorAdvice() {
+            const mentorElement = document.getElementById('mentor-advice');
+            const adviceMap = {
+                red: [
+                    "Start by learning about network protocols and how they can be exploited.",
+                    "Research common web application vulnerabilities like XSS and CSRF.",
+                    "Set up a controlled environment to practice your newly learned techniques safely."
+                ],
+                blue: [
+                    "Begin with understanding the OSI model and network architecture.",
+                    "Learn about different types of IDS and their pros and cons.",
+                    "Create an incident response plan and practice with simulated scenarios."
+                ],
+                both: [
+                    "Study both attack vectors and defense mechanisms to get a comprehensive view.",
+                    "Try to set up a small network and alternate between attacking and defending it.",
+                    "Analyze real-world case studies of cyber attacks and how they were mitigated."
+                ]
+            };
+            mentorElement.innerHTML = `<h3>Mentor Advice:</h3><p>${adviceMap[currentPath][progress]}</p>`;
+        }
+
+        function showQuiz() {
+            const quizElement = document.getElementById('quiz');
+            const currentQuiz = quizzes[currentPath][progress];
+            quizElement.innerHTML = `
+                <h3>Quick Quiz:</h3>
+                <p>${currentQuiz.q}</p>
+                <input type="text" id="quiz-answer" placeholder="Your answer">
+                <button onclick="checkQuizAnswer()">Submit Answer</button>
+            `;
+        }
+
+        function checkQuizAnswer() {
+            const userAnswer = document.getElementById('quiz-answer').value.toLowerCase();
+            const correctAnswer = quizzes[currentPath][progress].a.toLowerCase();
+            if (userAnswer.includes(correctAnswer)) {
+                alert("Correct! Well done.");
+            } else {
+                alert(`Incorrect. The correct answer involves: ${correctAnswer}`);
+            }
+        }
+
+        function updateProgress() {
+            progress = Math.min(progress, 2);
+            const progressElement = document.getElementById('progress');
+            const progressPercentage = ((progress + 1) / 3) * 100;
+            progressElement.style.width = progressPercentage + '%';
+            progressElement.innerHTML = Math.round(progressPercentage) + '%';
+        }
+
+        function completeObjective() {
+            progress++;
+            updateProgress();
+            if (progress < 3) {
+                showObjective();
+                provideMentorAdvice();
+                showQuiz();
+            } else {
+                alert("Congratulations! You've completed the " + currentPath + " team path!");
+                unlockAchievement(currentPath);
+            }
+        }
+
+        function unlockAchievement(path) {
+            const achievement = document.getElementById(`ach-${path}`);
+            achievement.classList.add('unlocked');
+        }
+
+        function updateTheme() {
+            const themeColors = {
+                red: '#ffebee',
+                blue: '#e3f2fd',
+                both: '#f3e5f5'
+            };
+            document.body.style.backgroundColor = themeColors[currentPath];
+        }
+
+        function saveProgress() {
+            localStorage.setItem('cybersecurityGameProgress', JSON.stringify({
+                path: currentPath,
+                progress: progress
+            }));
+            alert("Progress saved!");
+        }
+
+        function loadProgress() {
+            const savedProgress = JSON.parse(localStorage.getItem('cybersecurityGameProgress'));
+            if (savedProgress) {
+                currentPath = savedProgress.path;
+                progress = savedProgress.progress;
+                selectPath(currentPath);
+                updateProgress();
+                alert("Progress loaded!");
+            } else {
+                alert("No saved progress found.");
+            }
+        }
+
+        function openExternalResource() {
+            if (currentPath && externalResources[currentPath]) {
+                window.open(externalResources[currentPath], '_blank');
+            } else {
+                alert("Please select a path first!");
+            }
+        }
+    </script>
+</body>
+</html>
