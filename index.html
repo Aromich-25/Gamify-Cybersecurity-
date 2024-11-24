@@ -3,141 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Cyber Realm: Rise of the Digital Guardian</title>
+    <title>Cybersecurity and Ministry Study Guide</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f0f0f0;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
         }
-        #game-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        h1, h2, h3 {
+            color: #0056b3;
         }
-        #story {
+        a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .task {
             margin-bottom: 20px;
-        }
-        #choices {
-            display: flex;
-            flex-direction: column;
-        }
-        button {
-            margin: 5px 0;
-            padding: 10px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        #stats {
-            margin-top: 20px;
-            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div id="game-container">
-        <h1>The Cyber Realm: Rise of the Digital Guardian</h1>
-        <div id="story"></div>
-        <div id="choices"></div>
-        <div id="stats"></div>
+    <h1>Cybersecurity and Ministry Study Guide</h1>
+    
+    <h2>Cybersecurity Progress Tracker</h2>
+    
+    <h3>Beginner Level: Cybersecurity Basics</h3>
+    <div class="task">
+        <p><strong>Task 1:</strong> Complete a free introductory course on cybersecurity basics:</p>
+        <p><a href="https://www.cybrary.it/course/intro-to-it-and-cyber-security" target="_blank">Cybrary: Introduction to Cyber Security</a></p>
+    </div>
+    <div class="task">
+        <p><strong>Task 2:</strong> Learn about networking basics, such as IP addresses, DNS, and routing:</p>
+        <p><a href="https://www.netacad.com/courses/packet-tracer" target="_blank">Cisco Networking Basics</a></p>
+    </div>
+    <div class="task">
+        <p><strong>Task 3:</strong> Watch videos on common cybersecurity threats:</p>
+        <ul>
+            <li><a href="https://www.youtube.com/c/TheCyberMentor" target="_blank">The Cyber Mentor - YouTube Channel</a></li>
+            <li><a href="https://www.youtube.com/user/Hak5Darren" target="_blank">Hak5 - YouTube Channel</a></li>
+            <li><a href="https://www.youtube.com/c/NetworkChuck" target="_blank">NetworkChuck - YouTube Channel</a></li>
+        </ul>
+    </div>
+    <div class="task">
+        <p><strong>Task 4:</strong> Set up basic security for your personal devices:</p>
+        <ul>
+            <li><a href="https://www.microsoft.com/en-us/windows/comprehensive-security" target="_blank">Windows Defender Antivirus</a></li>
+            <li><a href="https://ubuntu.com/tutorials/ufw-quick-start#1-install-ufw" target="_blank">UFW Firewall Setup on Ubuntu</a></li>
+            <li><a href="https://bitwarden.com/" target="_blank">Bitwarden Password Manager</a></li>
+        </ul>
     </div>
 
-    <script>
-        const player = {
-            name: "",
-            xp: 0,
-            level: 1,
-            title: "Novice",
-            completedQuests: []
-        };
+    <h3>Intermediate Level: Technical Skills</h3>
+    <div class="task">
+        <p><strong>Task 1:</strong> Set up a Virtual Machine (VM):</p>
+        <ul>
+            <li><a href="https://www.virtualbox.org/" target="_blank">VirtualBox</a></li>
+            <li><a href="https://www.vmware.com/" target="_blank">VMware</a></li>
+            <li><a href="https://www.kali.org/" target="_blank">Kali Linux</a></li>
+            <li><a href="https://ubuntu.com/download" target="_blank">Ubuntu</a></li>
+        </ul>
+    </div>
+    <div class="task">
+        <p><strong>Task 2:</strong> Learn how to secure a VM:</p>
+        <p><a href="https://ubuntu.com/tutorials/ufw-quick-start#1-install-ufw" target="_blank">UFW on Ubuntu</a></p>
+    </div>
+    <div class="task">
+        <p><strong>Task 3:</strong> Complete a Capture the Flag (CTF) challenge:</p>
+        <ul>
+            <li><a href="https://www.hackthebox.eu/" target="_blank">Hack The Box</a></li>
+            <li><a href="https://tryhackme.com/" target="_blank">TryHackMe</a></li>
+        </ul>
+    </div>
 
-        const chapters = [
-            {
-                title: "The Awakening",
-                story: "In the village of Newbie Harbor, you awaken as a fledgling hero. Master Hackworth approaches you with urgency...",
-                choices: [
-                    { text: "Begin TryHackMe course", quest: "TryHackMe", xp: 500, url: "https://tryhackme.com/path/outline/intro" },
-                    { text: "Set up VirtualBox", quest: "VirtualBox", xp: 300, url: "https://www.virtualbox.org/" }
-                ]
-            },
-            {
-                title: "The Code Whisperer",
-                story: "You enter the enchanted Forest of Syntax and encounter the wise serpent, Pythonia...",
-                choices: [
-                    { text: "Learn Python on Codecademy", quest: "Python", xp: 1000, url: "https://www.codecademy.com/learn/learn-python-3" },
-                    { text: "Take on OverTheWire Bandit challenges", quest: "Bandit", xp: 800, url: "https://overthewire.org/wargames/bandit/" }
-                ]
-            },
-            // Add more chapters here
-        ];
+    <h2>Ministry Progress Tracker (Free Grace Theology Focus)</h2>
+    
+    <h3>Beginner Level: Faith & Foundation</h3>
+    <div class="task">
+        <p><strong>Task 1:</strong> Read the Bible daily:</p>
+        <p><a href="https://www.biblegateway.com/" target="_blank">Bible Gateway</a></p>
+    </div>
+    <div class="task">
+        <p><strong>Task 2:</strong> Watch sermons and teachings on Free Grace Theology:</p>
+        <ul>
+            <li><a href="https://faithalone.org/" target="_blank">Grace Evangelical Society</a></li>
+            <li><a href="https://freegracealliance.com/" target="_blank">Free Grace Alliance</a></li>
+        </ul>
+    </div>
+    <div class="task">
+        <p><strong>Task 3:</strong> Learn the basics of Free Grace Theology:</p>
+        <ul>
+            <li><a href="https://faithalone.org/what-is-free-grace-theology/" target="_blank">What is Free Grace Theology?</a></li>
+            <li><a href="https://freegracealliance.com/what-is-free-grace/" target="_blank">Free Grace Theology Defined</a></li>
+        </ul>
+    </div>
 
-        let currentChapter = 0;
-
-        function startGame() {
-            player.name = prompt("Enter your hero's name:");
-            updateStats();
-            showChapter();
-        }
-
-        function showChapter() {
-            const chapter = chapters[currentChapter];
-            document.getElementById("story").innerHTML = `<h2>${chapter.title}</h2><p>${chapter.story}</p>`;
-            
-            const choicesDiv = document.getElementById("choices");
-            choicesDiv.innerHTML = "";
-            chapter.choices.forEach(choice => {
-                const button = document.createElement("button");
-                button.textContent = choice.text;
-                button.onclick = () => redirectToQuest(choice);
-                choicesDiv.appendChild(button);
-            });
-        }
-
-        function redirectToQuest(choice) {
-            if (!player.completedQuests.includes(choice.quest)) {
-                window.open(choice.url, '_blank');
-                const completeButton = document.createElement("button");
-                completeButton.textContent = `Mark "${choice.quest}" as complete`;
-                completeButton.onclick = () => completeQuest(choice);
-                document.getElementById("choices").appendChild(completeButton);
-            } else {
-                alert("You've already completed this quest!");
-            }
-        }
-
-        function completeQuest(choice) {
-            if (!player.completedQuests.includes(choice.quest)) {
-                player.xp += choice.xp;
-                player.completedQuests.push(choice.quest);
-                alert(`Congratulations! You've completed the "${choice.quest}" quest and gained ${choice.xp} XP!`);
-                updateStats();
-                
-                if (player.completedQuests.length >= chapters[currentChapter].choices.length) {
-                    currentChapter++;
-                    if (currentChapter < chapters.length) {
-                        showChapter();
-                    } else {
-                        alert("Congratulations! You've completed all available chapters.");
-                    }
-                }
-            }
-        }
-
-        function updateStats() {
-            player.level = Math.floor(player.xp / 1000) + 1;
-            if (player.level >= 5) player.title = "Cyber Guardian";
-            else if (player.level >= 3) player.title = "Digital Defender";
-            else if (player.level >= 2) player.title = "Code Apprentice";
-
-            document.getElementById("stats").innerHTML = `
-                Name: ${player.name} | XP: ${player.xp} | Level: ${player.level} | Title: ${player.title}
-            `;
-        }
-
-        startGame();
-    </script>
+    <h3>Intermediate Level: Discipleship & Evangelism</h3>
+    <div class="task">
+        <p><strong>Task 1:</strong> Learn to share the gospel:</p>
+        <ul>
+            <li><a href="https://faithalone.org/resources/videos/" target="_blank">Free Grace Evangelism Training</a></li>
+        </ul>
+    </div>
 </body>
 </html>
