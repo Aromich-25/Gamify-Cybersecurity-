@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Progress Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        .level {
+            margin-top: 20px;
+        }
+        .level p {
+            font-size: 18px;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .points {
+            font-size: 20px;
+        }
+        .link {
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cybersecurity Progress Tracker</h1>
+
+    <!-- Beginner Level -->
+    <div class="level" id="beginner-level">
+        <h2>Beginner Level</h2>
+        <p><strong>Points:</strong> <span id="beginner-points">0</span> / 200</p>
+        <button class="button" onclick="addPoints('beginner')">Complete Beginner Task</button>
+        <p>Task: Complete introductory course on cybersecurity basics.</p>
+        <p class="points">Current Level: <span id="beginner-level-status">Novice</span></p>
+    </div>
+
+    <!-- Intermediate Level -->
+    <div class="level" id="intermediate-level">
+        <h2>Intermediate Level</h2>
+        <p><strong>Points:</strong> <span id="intermediate-points">0</span> / 300</p>
+        <button class="button" onclick="addPoints('intermediate')">Complete Intermediate Task</button>
+        <p>Task: Set up a basic firewall and secure virtual machine.</p>
+        <p class="points">Current Level: <span id="intermediate-level-status">Explorer</span></p>
+    </div>
+
+    <!-- Advanced Level -->
+    <div class="level" id="advanced-level">
+        <h2>Advanced Level</h2>
+        <p><strong>Points:</strong> <span id="advanced-points">0</span> / 400</p>
+        <button class="button" onclick="addPoints('advanced')">Complete Advanced Task</button>
+        <p>Task: Complete a penetration test on a vulnerable system.</p>
+        <p class="points">Current Level: <span id="advanced-level-status">Defender</span></p>
+    </div>
+
+    <!-- Professional Networking -->
+    <div class="level" id="professional-networking">
+        <h2>Professional Networking</h2>
+        <p><strong>Points:</strong> <span id="networking-points">0</span> / 100</p>
+        <button class="button" onclick="addPoints('networking')">Attend Conference</button>
+        <p>Task: Attend a cybersecurity conference (virtual or in-person).</p>
+        <p class="points">Current Level: <span id="networking-status">Networker</span></p>
+    </div>
+
+    <!-- Redirect Link to Study Guide -->
+    <div class="link">
+        <a href="https://tinyurl.com/bdfmjpzx" class="button" target="_blank">Access Full Study Guide</a>
+    </div>
+
+    <script>
+        // Function to add points for each level
+        function addPoints(level) {
+            let pointsElement = document.getElementById(level + '-points');
+            let currentPoints = parseInt(pointsElement.textContent);
+            
+            if (level === 'beginner' && currentPoints < 200) {
+                currentPoints += 20;
+                pointsElement.textContent = currentPoints;
+                updateLevelStatus('beginner', currentPoints);
+            }
+            if (level === 'intermediate' && currentPoints < 300) {
+                currentPoints += 30;
+                pointsElement.textContent = currentPoints;
+                updateLevelStatus('intermediate', currentPoints);
+            }
+            if (level === 'advanced' && currentPoints < 400) {
+                currentPoints += 40;
+                pointsElement.textContent = currentPoints;
+                updateLevelStatus('advanced', currentPoints);
+            }
+            if (level === 'networking' && currentPoints < 100) {
+                currentPoints += 10;
+                pointsElement.textContent = currentPoints;
+                updateLevelStatus('networking', currentPoints);
+            }
+        }
+
+        // Update level status based on points
+        function updateLevelStatus(level, points) {
+            let levelStatus = document.getElementById(level + '-level-status');
+            if (points >= 200 && points < 300) {
+                levelStatus.textContent = "Explorer";
+            } else if (points >= 300 && points < 400) {
+                levelStatus.textContent = "Defender";
+            } else if (points >= 400) {
+                levelStatus.textContent = "Master";
+            } else {
+                levelStatus.textContent = "Novice";
+            }
+        }
+    </script>
+</body>
+</html>
